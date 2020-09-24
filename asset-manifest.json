@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/hero-drop-app/static/css/main.5f367855.chunk.css",
+    "main.js": "/hero-drop-app/static/js/main.c7847f5e.chunk.js",
+    "main.js.map": "/hero-drop-app/static/js/main.c7847f5e.chunk.js.map",
+    "runtime-main.js": "/hero-drop-app/static/js/runtime-main.6ca2a97a.js",
+    "runtime-main.js.map": "/hero-drop-app/static/js/runtime-main.6ca2a97a.js.map",
+    "static/css/2.c7d94637.chunk.css": "/hero-drop-app/static/css/2.c7d94637.chunk.css",
+    "static/js/2.524733ea.chunk.js": "/hero-drop-app/static/js/2.524733ea.chunk.js",
+    "static/js/2.524733ea.chunk.js.map": "/hero-drop-app/static/js/2.524733ea.chunk.js.map",
+    "index.html": "/hero-drop-app/index.html",
+    "precache-manifest.aa0dfca23bc4988a1ebd278ae01c4d65.js": "/hero-drop-app/precache-manifest.aa0dfca23bc4988a1ebd278ae01c4d65.js",
+    "service-worker.js": "/hero-drop-app/service-worker.js",
+    "static/css/2.c7d94637.chunk.css.map": "/hero-drop-app/static/css/2.c7d94637.chunk.css.map",
+    "static/css/main.5f367855.chunk.css.map": "/hero-drop-app/static/css/main.5f367855.chunk.css.map",
+    "static/js/2.524733ea.chunk.js.LICENSE.txt": "/hero-drop-app/static/js/2.524733ea.chunk.js.LICENSE.txt",
+    "static/media/bg.png": "/hero-drop-app/static/media/bg.203b271b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ca2a97a.js",
+    "static/css/2.c7d94637.chunk.css",
+    "static/js/2.524733ea.chunk.js",
+    "static/css/main.5f367855.chunk.css",
+    "static/js/main.c7847f5e.chunk.js"
+  ]
+}
