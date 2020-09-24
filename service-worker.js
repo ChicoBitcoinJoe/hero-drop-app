@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hero-drop-app/precache-manifest.aa0dfca23bc4988a1ebd278ae01c4d65.js"
+  "/hero-drop-app/precache-manifest.8a3841da24b8555cbf798e79445a37da.js"
 );
 
 self.addEventListener('message', (event) => {
