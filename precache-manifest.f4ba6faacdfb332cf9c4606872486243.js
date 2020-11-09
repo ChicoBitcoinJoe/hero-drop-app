@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e9841f85e5bac8077d22b494fc9cb7e",
+    "revision": "8309af72e327b36153483275925ab83c",
     "url": "/hero-drop-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hero-drop-app/static/css/2.c7d94637.chunk.css"
   },
   {
-    "revision": "f5773dc18f5ad3db51c7",
+    "revision": "a94df15c0cb4390eaea1",
     "url": "/hero-drop-app/static/css/main.55459602.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hero-drop-app/static/js/2.d29cc4df.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f5773dc18f5ad3db51c7",
-    "url": "/hero-drop-app/static/js/main.b4d9fce6.chunk.js"
+    "revision": "a94df15c0cb4390eaea1",
+    "url": "/hero-drop-app/static/js/main.b372f5e1.chunk.js"
   },
   {
     "revision": "5766c1c45ca84e73e8ce",
