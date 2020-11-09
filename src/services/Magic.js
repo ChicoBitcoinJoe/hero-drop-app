@@ -20,6 +20,7 @@ const useMagic = () => {
       await magic.auth.loginWithMagicLink({ email, showUI: true });
       if(await magic.user.isLoggedIn()) {
         const metadata = await magic.user.getMetadata();
+        console.log('Logged in as', metadata.email)
         const address = metadata.publicAddress;
         const spaces = ['hero-drop-app'];
         const provider = magic.rpcProvider;

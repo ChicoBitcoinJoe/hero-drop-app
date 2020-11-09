@@ -92,7 +92,6 @@ function App() {
     setLoggingIn(true);
 
     const playerObj = await magic.login(email);
-    console.log('Logged in as', playerObj.email)
     const serverObj = await Server(playerObj.storage, 'hero-drop-app')
     
     function handleSync(data, b) {
