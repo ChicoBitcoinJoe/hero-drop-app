@@ -75,36 +75,6 @@ function LoginButton({ handleLogin }) {
   </>
 }
 
-function AccountButton({ handleLogin }) {
-  
-  const [anchorEl, setAnchorEl] = React.useState(React.createRef());
-  const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState('');
-  
-
-  const submit = (e) => {
-    e.preventDefault();
-    handleLogin(email);
-    setOpen(false);
-  };
-
-  return <>
-    <Button ref={anchorEl} 
-      style={{ backgroundColor: '#44975f', color: 'white', width: '97px' }} 
-      size="large" 
-      variant="contained" 
-      onClick={() => setOpen(!open)}
-    >
-      Account
-    </Button>
-    <Popper open={open} anchorEl={anchorEl.current} placement="bottom-end">
-      <Paper style={{ marginTop: '24px', padding: '24px', maxWidth: '272px' }} elevation={10}>
-        Account
-      </Paper>
-    </Popper>
-  </>
-}
-
 function App() {
 
   useDocumentTitle("Hero Drop");
@@ -122,6 +92,7 @@ function App() {
     setLoggingIn(true);
 
     const playerObj = await magic.login(email);
+    console.log('Logged in as', playerObj.email)
     const serverObj = await Server(playerObj.storage, 'hero-drop-app')
     
     function handleSync(data, b) {
