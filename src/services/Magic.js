@@ -7,7 +7,7 @@ const magic = new Magic('pk_test_F879423DC899077C', {
   network: "ropsten" // Supports "mainnet", "rinkeby", "ropsten", "kovan"
 });
 
-const useMagicUser = () => {
+const useMagic = () => {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   const [isLoggingIn, setIsLoggingIn] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -15,6 +15,47 @@ const useMagicUser = () => {
   const [box, setBox] = React.useState();
   const [space, setSpace] = React.useState();
 
+  const login = async (email) => {
+    try {
+      await magic.auth.loginWithMagicLink({ email, showUI: true });
+      if(await magic.user.isLoggedIn()) {
+        const metadata = await magic.user.getMetadata();
+        const address = metadata.publicAddress;
+        const spaces = ['hero-drop-app'];
+        const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
+        const box = await Box.create();
+        await box.auth(spaces, { address, provider })
+        await box.syncDone
+        const storage = box.spaces['hero-drop-app']
+        //console.log(metadata, box)
+        return {
+          email,
+          metadata,
+          address,
+          provider,
+          box,
+          storage
+        }
+      }
+      else {
+        throw new Error('failed to log in');
+      }
+    } catch(err) {
+      console.error(err)
+      if (err instanceof RPCError) {
+        switch(err.code) {
+          case RPCErrorCode.MagicLinkFailedVerification:
+          case RPCErrorCode.MagicLinkExpired:
+          case RPCErrorCode.MagicLinkRateLimited:
+          case RPCErrorCode.UserAlreadyLoggedIn:
+          default: // Handle errors accordingly :)
+          break;
+        }
+      }
+    }
+  }
+
+  /*
   const login = async (email) => {
     setEmail(email)
     setIsLoggingIn(true);
@@ -52,6 +93,7 @@ const useMagicUser = () => {
     }
     setIsLoggingIn(false);
   }
+  */
 
   const logout = async () => {
     await box.logout();
@@ -70,9 +112,8 @@ const useMagicUser = () => {
     logout,
     set: {
       email: setEmail,
-      isLoggedIn: setLoggedIn
     }
   }
 }
 
-export default useMagicUser;
+export default useMagic;

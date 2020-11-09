@@ -2,14 +2,12 @@ import React from 'react'
 
 import useServer from '../services/Server'
 
-import 'react-contexify/dist/ReactContexify.min.css';
-
 function Campaign(props) {
 
   const { user } = props;
 
   let campaignId = decodeURIComponent(props.match.params.campaignId);
-  const server = useServer(campaignId, user.data);
+  //const server = useServer(campaignId, user.data);
 
   const handleUpdate = (a,b) => {
     console.log(a,b)
@@ -21,8 +19,8 @@ function Campaign(props) {
 
   React.useEffect(() => {
     if(user.isLoggedIn) {
-      server.join(campaignId, handleUpdate, handlePermissionChange);
-      console.log(server)
+      //server.join(campaignId, handleUpdate, handlePermissionChange);
+      //console.log(server)
       //assets.register(server.assets)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

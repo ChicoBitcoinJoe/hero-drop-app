@@ -35,7 +35,8 @@ export default function useList(initialList) {
     ];
   }
 
-  const remove = (index) => {
+  const pop = (index) => {
+    if(!index) index = list.length-1;
     if(index < 0 || index >= list.length) return false;
     const newList = list.slice(0,index).concat(list.slice(index+1, list.length));
     setList(newList);
@@ -46,7 +47,7 @@ export default function useList(initialList) {
     list,
     get,
     push,
-    remove,
+    pop,
   }
 
 }

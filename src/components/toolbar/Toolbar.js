@@ -11,8 +11,7 @@ import Save from '@material-ui/icons/Save';
 import Place from '@material-ui/icons/Place';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import GridOnIcon from '@material-ui/icons/GridOn';
-
-import Float from '../Float';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 
 import AssetCreator from './AssetCreator';
 import BackgroundForm from './BackgroundForm';
@@ -24,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  flipX: {
+    '-webkit-transform': 'rotateX(180deg)',
+    'transform': 'rotateX(180deg)'
   }
 }));
 
@@ -31,12 +34,12 @@ export default function Toolbar({ User, Scene, openPopper, popper, asset, editAs
 
   const Assets = Scene.assets;
   const classes = useStyles();
+  const [anchorEl] = React.useState(React.createRef());
 
   const handlePopperChange = (e, value) => {
     openPopper(value)
   }
 
-  User.set.isLoggedIn(true)
   const handleLogin = (email) => {
     console.log(email)
     openPopper(null)
@@ -46,46 +49,49 @@ export default function Toolbar({ User, Scene, openPopper, popper, asset, editAs
   }
   
   return <>
-    <Float x={24} y={24} fixed={true} zIndex={6}>
-      <Paper>
-        <ToggleButtonGroup exclusive value={popper} onChange={handlePopperChange} aria-label="change edit popper">
+    <Paper ref={anchorEl} style={{ position: 'absolute', top: '24px', left: '24px', zIndex: '5'}}>
+      <ToggleButtonGroup exclusive value={popper} onChange={handlePopperChange} aria-label="change edit popper">
+        <ToggleButton value="background" aria-label="edit background" style={{ color: 'white' }}>
+          <WallpaperIcon />
+        </ToggleButton>
+        <ToggleButton value="grid" aria-label="edit grid" style={{ color: 'white' }}>
+          <GridOnIcon />
+        </ToggleButton>
+        <ToggleButton value="asset" aria-label="edit assets" style={{ color: 'white' }}>
+          <Place />
+        </ToggleButton>
+        {
+          !User.isLoggedIn ?
+          <ToggleButton value="login" aria-label="color" style={{ backgroundColor: '#44975f', color: 'white' }}>
+            &nbsp;Sign in&nbsp;
+          </ToggleButton> :
+          <ToggleButton value="save" aria-label="save scene" disabled={!User.isLoggedIn} style={{ backgroundColor: '#44975f', color: 'white' }}>
+            <Save />
+          </ToggleButton>
+        }
+      </ToggleButtonGroup>
+    </Paper>
+    {
+      //BrandingWatermark, ChromeReaderMode, CropFree, PhotoSizeSelectLarge
+      !User.isLoggedIn ? null :
+      <Paper style={{ position: 'absolute', top: '24px', right: '24px', zIndex: '5', transform: 'rotateY(180deg)' }}>
+        <ToggleButtonGroup value={popper} onChange={null} aria-label="change edit popper">
           <ToggleButton value="background" aria-label="edit background" style={{ color: 'white' }}>
-            <WallpaperIcon />
+            <ChromeReaderModeIcon />
           </ToggleButton>
-          <ToggleButton value="grid" aria-label="edit grid" style={{ color: 'white' }}>
-            <GridOnIcon />
-          </ToggleButton>
-          <ToggleButton value="asset" aria-label="edit assets" style={{ color: 'white' }}>
-            <Place />
-          </ToggleButton>
-          {
-            !User.isLoggedIn ? null :
-            <ToggleButton value="save" aria-label="save scene" disabled={!User.isLoggedIn} style={{ backgroundColor: '#44975f', color: 'white' }}>
-              <Save />
-            </ToggleButton>
-          }
         </ToggleButtonGroup>
       </Paper>
-    </Float>
-    {
-      User.isLoggedIn ? null :
-      <Float x={192} y={24} fixed={true} zIndex={6}>
-        <ToggleButtonGroup exclusive value={popper} onChange={handlePopperChange} aria-label="text formatting">
-          <ToggleButton value="login" aria-label="color" style={{ marginLeft: '16px', backgroundColor: '#44975f', color: 'white', border: '1px solid #EEE', borderRadius: '4px' }}>
-            &nbsp;Sign in&nbsp;
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Float>
     }
-    <Popper open={!(!popper)} placement="bottom-end">
+    
+    <Popper open={!(!popper)} anchorEl={anchorEl.current} placement="bottom-start">
       <Paper className="hideScrollBar" 
         style={{ 
           zIndex: '5',
           width: '272px', 
           maxHeight: '320px', 
           overflow: 'auto',
-          padding: '12px', 
-          margin: '96px 0px 0px 24px',        
+          padding: '12px',
+          marginTop: '24px'
         }}
       >
         {

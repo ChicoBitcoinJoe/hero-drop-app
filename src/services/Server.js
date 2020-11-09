@@ -81,9 +81,14 @@ function useServer(storage) {
     Private.post(message)
   }
 
+  const joinPublicServer = (address, handleUpdate, handlePermissionChange) => {
+
+  }
+
   return {
     create,
     join,
+    joinPublicServer,
     broadcast,
     store,
     assets: Assets,
@@ -92,6 +97,7 @@ function useServer(storage) {
     members: PrivateMembers,
     joinRequests: PublicMembers.filter(member => !PrivateMembers.includes(member)),
   }
+
 }
 
 export default useServer;

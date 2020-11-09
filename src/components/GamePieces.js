@@ -3,9 +3,9 @@ import React from 'react';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 
-import AssetEditor from '../components/AssetEditor';
-import GamePiece from '../components/GamePiece';
-import Asset from '../components/Asset';
+import AssetEditor from './AssetEditor';
+import GamePiece from './gameboard/GamePiece';
+import Asset from './gameboard/Asset';
 import useKeyPress from '../hooks/useKeyPress';
 
 const popperOptions = {
@@ -31,7 +31,7 @@ const paperStyles = {
   overflow: 'auto' 
 };
 
-function GameBoard({ Scene, selectedAsset, onEditAsset, onRightClick }) {
+function GamePieces({ Scene, selectedAsset, onEditAsset, onRightClick, masterLocked }) {
   
   const unlocked = useKeyPress('Control');
   const [anchorEl, setAnchorEl] = React.useState();
@@ -62,7 +62,7 @@ function GameBoard({ Scene, selectedAsset, onEditAsset, onRightClick }) {
             id={i} 
             asset={asset}
             updatePosition={updatePosition}
-            draggable={!asset.locked || unlocked}
+            draggable={(!asset.locked || unlocked) && !masterLocked}
             onRightClick={onRightClick}
             onEditAsset={(event) => handleEditAsset(event, i)}
             onRemoveAsset={() => Scene.assets.remove(i)}
@@ -80,4 +80,4 @@ function GameBoard({ Scene, selectedAsset, onEditAsset, onRightClick }) {
   </>
 }
 
-export default GameBoard;
+export default GamePieces;

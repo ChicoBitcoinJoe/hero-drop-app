@@ -11,7 +11,7 @@ export default function useSceneManager(Scene) {
   const [grid, updateGrid, setGrid] = useObject(Scene.grid);
 
   React.useEffect(() => {
-    updateBackground({ ref: React.createRef() })
+    //updateBackground({ ref: React.createRef() })
   }, [])
 
   /* START HACKS */
@@ -30,12 +30,14 @@ export default function useSceneManager(Scene) {
 
   /* END HACKS */
 
-  return {
-    name,
-    assets,
-    background,
-    grid,
-    update: {
+  return [
+    {
+      name,
+      assets,
+      background,
+      grid
+    },
+    {
       name: setName,
       background: updateBackground,
       grid: updateGrid,
@@ -59,9 +61,9 @@ export default function useSceneManager(Scene) {
         updateGrid({hexSize: hexSize})
       },
     },
-    set: {
+    {
       background: setBackground,
       grid: setGrid
     }
-  }
+  ]
 }

@@ -3,30 +3,33 @@ import React from 'react';
 import Draggable from 'react-draggable'
 import { Menu, Item, Separator, Submenu, MenuProvider } from 'react-contexify'
 
-export default function GamePiece({ id, asset, draggable, updatePosition, onRightClick, onEditAsset, onRemoveAsset, children }) {
+export default function GamePiece({ id, x, y, draggable, onGrab, onMove, onDrop, onRightClick, onEditAsset, onRemoveAsset, children }) {
 
   const onStart = (event, props) => {
-    console.log(event, props)
+    let x = props.x;
+    let y = props.y;
+    onGrab(id,x,y)
   }
   
   const onDrag = (event, props) => {
-    //console.log(event, props)
+    let x = props.x;
+    let y = props.y;
+    onMove(id,x,y)
   }
 
   const onStop = (event, props) => {
-    console.log(event, props)
     let x = props.x;
     let y = props.y;
-    updatePosition(x,y)
+    onDrop(id,x,y)
   }
 
   return <>
     <MenuProvider id={'asset_menu' + id}>
       <Draggable disabled={!draggable} 
-        position={{x: asset.x, y: asset.y}}
-        onStart={onStart }
-        onDrag={onDrag }
-        onStop={onStop }
+        position={{x, y}}
+        onStart={onStart}
+        onDrag={onDrag}
+        onStop={onStop}
       >
         <div className="game-piece" 
           style={{ 
