@@ -22,7 +22,7 @@ const useMagic = () => {
         const metadata = await magic.user.getMetadata();
         const address = metadata.publicAddress;
         const spaces = ['hero-drop-app'];
-        const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
+        const provider = magic.rpcProvider;
         const box = await Box.create();
         await box.auth(spaces, { address, provider })
         await box.syncDone

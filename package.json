@@ -12,7 +12,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "ethers": "^5.0.14",
-    "magic-sdk": "^2.7.0",
+    "magic-sdk": "^3.0.1",
     "react": "^16.13.1",
     "react-color": "^2.14.1",
     "react-contexify": "^4.1.1",
